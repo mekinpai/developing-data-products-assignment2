@@ -1,0 +1,41 @@
+---
+title: "Coursera Developing Data Products Week 3 Assignment"
+author: "Mekin Lertanuntasuk"
+date: "7/22/2018"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+set.seed(1234)
+library(plotly)
+library(ggplot2)
+library(dplyr)
+```
+
+## Introduction
+
+This web page presentation is part of the Developing Data Products course on Coursera.org. It was created using R Markdown and featured a plot created with Plotly.
+
+In this presentation, we are going to use the diamonds dataset from ggplot2 package to plot the relationship between price and the weight of the diamonds, categorized by the quality of the cut.
+
+## Let's have a quick look at our dataset 
+
+```{r diamonds, echo = TRUE}
+diamonds = diamonds[,c("carat","cut","price")]
+summary(diamonds)
+```
+
+Since the dataset is pretty big, we are going to take only 3,000 sample records to represent our entire dataset.
+
+```{r diamonds2, echo = TRUE}
+diamonds = sample_n(diamonds, 3000)
+```
+
+## Diamond weight and cut have positive relationship with its price
+
+```{r plot,echo =F, message=FALSE, warning=FALSE}
+plot_ly(diamonds, x = ~carat, y = ~price
+        , color = ~cut, type = "scatter")
+```
+
